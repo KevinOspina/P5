@@ -1,6 +1,6 @@
 const sqlUtil = require('./sqlUtil');
 
-//Libreria para el manejo de operaciones basicas con tablas y 
+//Libreria para el manejo de operaciones basicas con tablas y
 // para ejecutar consultas personalizadas.
 class DAOHandlerJS {
     constructor(tableName) {
@@ -39,7 +39,7 @@ class DAOHandlerJS {
 
         var sql = `INSERT INTO ${this.tableName} (${fieldsInsert.join(',')}) VALUES (${fInt.join(',')})`;
 
-     //   console.log("fValues: "+JSON.stringify(fValues));
+        //   console.log("fValues: "+JSON.stringify(fValues));
 
         this.exec_query(sql, fValues, (err, result, fields) => {
             callback(err, result, fields);
@@ -60,7 +60,7 @@ class DAOHandlerJS {
 
         var sql = `UPDATE ${this.tableName} SET ${fieldsUpdate.join(',')} WHERE ${cond}`;
         console.log(sql)
-       // console.log(sql,fValues)
+        // console.log(sql,fValues)
         this.exec_query(sql, fValues, (err, result, fields) => {
             callback(err, result, fields);
         });
@@ -78,7 +78,7 @@ class DAOHandlerJS {
         var sql = `SELECT * FROM ${this.tableName} WHERE ${cond}`;
 
         this.exec_query(sql, dataCond, (err, result, fields) => {
-          //  console.log(sql);
+            //  console.log(sql);
             callback(err, result, fields);
         });
     }

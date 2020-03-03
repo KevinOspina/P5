@@ -40,7 +40,7 @@ app.get('/', function (req, res) {
 
 //Rutas
 // app.use('/cuadrillas',require('./rutas/cuadrillas'));
-// app.use('/empleados',require('./rutas/empleados'));
+app.use('/empleados',require('./rutas/empleados'));
 // app.use('/eventos',require('./rutas/eventos'));
 // app.use('/reportes',require('./rutas/reportes'));
 // app.use('/actividades',require('./rutas/actividades'));
