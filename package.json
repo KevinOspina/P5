@@ -1,0 +1,23 @@
+{
+  "name": "P5",
+  "version": "1.0.0",
+  "description": "Proyecto para Ingeniería de software V",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kevin Ospina, Juanes Leal, Alejandro Monsalve",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.2"
+  }
+}
