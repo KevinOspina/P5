@@ -39,16 +39,16 @@ app.get('/', function (req, res) {
 });
 
 //Rutas
+app.use('/actividades',require('./rutas/actividades'));
+app.use('/areas',require('./rutas/areas'));
 app.use('/cuadrillas',require('./rutas/cuadrillas'));
 app.use('/empleados',require('./rutas/empleados'));
 app.use('/eventos',require('./rutas/eventos'));
-// app.use('/reportes',require('./rutas/reportes'));
-// app.use('/actividades',require('./rutas/actividades'));
-// app.use('/notificaciones',require('./rutas/notificaciones'));
-// app.use('/presupuestos',require('./rutas/presupuestos'));
-// app.use('/items',require('./rutas/items'));
-// app.use('/solicitudes',require('./rutas/solicitudes'));
-// app.use('/ubicaciones',require('./rutas/ubicaciones'));
+app.use('/historiales',require('./rutas/reportes'));
+app.use('/notificaciones',require('./rutas/notificaciones'));
+app.use('/reportes',require('./rutas/reportes'));
+app.use('/solicitudes',require('./rutas/solicitudes'));
+app.use('/ubicaciones',require('./rutas/ubicaciones'));
 
 //Iniciando el Servidor
 app.listen(app.get('port'), () => {
