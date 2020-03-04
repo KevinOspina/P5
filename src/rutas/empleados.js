@@ -3,7 +3,7 @@ const router = express.Router();
 const EmpleadosDAO = require('../modulos/daos/EmpleadosDAO');
 var daoEmpleados = new EmpleadosDAO();
 
-router.get('/getAll', function (req, res) {
+router.get('/', function (req, res) {
     daoEmpleados.getEmpleados((err, row, fields) => {
         if (err) {
             res.json(err);
