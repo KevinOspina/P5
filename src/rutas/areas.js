@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const UbicacionesDAO = require('../modulos/daos/UbicacionesDAO');
-var daoUbicaciones = new UbicacionesDAO();
+const AreasDAO = require('../modulos/daos/AreasDAO');
+var daoAreas = new AreasDAO();
 
 router.get('/', function (req, res) {
-    daoUbicaciones.getUbicaciones((err, row, fields) => {
+    daoAreas.getAreas((err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 
 router.post('/get', function (req, res) {
     var Doc_identidad = req.body.Doc_identidad;
-    daoUbicaciones.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+    daoAreas.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -29,7 +29,7 @@ router.post('/insert', function (req, res) {
     var Nombre = req.body.Nombre;
     var Doc_identidad = req.body.Doc_identidad;
 
-    daoUbicaciones.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoAreas.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -43,7 +43,7 @@ router.post('/update', function (req, res) {
     var Nombre = req.body.Nombre;
     var Doc_identidad = req.body.Doc_identidad;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoUbicaciones.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoAreas.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -56,7 +56,7 @@ router.post('/delete', function (req, res) {
     var Doc_identidad = req.body.Doc_identidad;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoUbicaciones.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoAreas.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
