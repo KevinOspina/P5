@@ -27,6 +27,7 @@ router.post('/get', function (req, res) {
 
 router.post('/insert', function (req, res) {
     var Nombre = req.body.Nombre;
+    var Id_cuadrillas = req.body.Id_cuadrillas;
     var Doc_identidad = req.body.Doc_identidad;
     var Id_cuadrillas = req.body.Id_cuadrillas;
 

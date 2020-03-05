@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const ReportesDAO = require('../modulos/daos/ReportesDAO');
+const ActividadesDAO = require('../modulos/daos/ActividadesDAO');
 var daoReportes = new ReportesDAO();
+var daoActividades = new ActividadesDAO();
+
 
 router.get('/', function (req, res) {
     daoReportes.getReportes((err, row, fields) => {
@@ -13,10 +16,11 @@ router.get('/', function (req, res) {
     });
 });
 
-
-router.post('/get', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoReportes.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+//Consulta del DAO Lista, falta organizar el metodo.
+router.get('/get', function (req, res) {
+    var area = req.body.Id_areas;
+    var cuadrilla = req.body.Id_cuadrillas
+    daoReportes.getReportesByCuadrilla('Id_areas=?', [area], (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +30,23 @@ router.post('/get', function (req, res) {
 });
 
 router.post('/insert', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var tipo = req.body.Tipo;
+    var descripcion = req.body.Descripcion;
+    var evento = req.body.Id_eventos;
+    var solicitud = req.body.Id_solicitudes;
+    var area = req.body.Id_areas;
 
-    daoReportes.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+
+
+    daoReportes.insert({'Tipo': tipo, 'Descripcion': descripcion, 'Id_eventos': evento, 'Id_solicitudes':solicitud, 'Id_areas':area}, (err, result, fields) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
+
+    daoActividades.update({'Estado': 'Finalizado',}, 'Id_eventos=?', [evento], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -38,7 +55,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
+router.put('/update', function (req, res) {
     var Id_empleado = req.body.Id_empleado;
     var Nombre = req.body.Nombre;
     var Doc_identidad = req.body.Doc_identidad;
