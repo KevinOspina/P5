@@ -15,8 +15,8 @@ router.get('/', function (req, res) {
 
 
 router.post('/get', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoEventos.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+    var Id_eventos = req.body.Id_eventos;
+    daoEventos.get('Id_eventos=?', [Id_eventos], (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +26,11 @@ router.post('/get', function (req, res) {
 });
 
 router.post('/insert', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
-
-    daoEventos.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    var Tipo = req.body.Tipo;
+    var Estado = req.body.Estado;
+    var Descripcion = req.body.Descripcion;
+    var Id_ubicaciones = req.body.Id_ubicaciones;
+    daoEventos.insert({'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion ,  'Id_ubicaciones': Id_ubicaciones  }, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -38,12 +39,14 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+router.put('/update', function (req, res) {
+    var Id_eventos = req.body.Id_eventos;
+    var Tipo = req.body.Tipo;
+    var Estado = req.body.Estado;
+    var Descripcion = req.body.Descripcion;
+    var Id_ubicaciones = req.body.Id_ubicaciones;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoEventos.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoEventos.update({ 'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion , 'Id_ubicaciones': Id_ubicaciones  }, 'Id_eventos=?', [Id_eventos], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -52,11 +55,11 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+router.delete('/delete', function (req, res) {
+    var Id_eventos = req.body.Id_eventos;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoEventos.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoEventos.delete('Id_eventos=?', [Id_eventos], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {

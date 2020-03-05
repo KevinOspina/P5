@@ -15,8 +15,8 @@ router.get('/', function (req, res) {
 
 
 router.post('/get', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoCuadrillas.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+    var Id_cuadrillas = req.body.Id_cuadrillas;
+    daoCuadrillas.get('Id_cuadrillas=?', [Id_cuadrillas], (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +26,9 @@ router.post('/get', function (req, res) {
 });
 
 router.post('/insert', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Tipo = req.body.Tipo;
 
-    daoCuadrillas.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoCuadrillas.insert({'Tipo': Tipo}, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -38,12 +37,11 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+router.put('/update', function (req, res) {
+    var Id_cuadrillas = req.body.Id_cuadrillas;
+    var Tipo = req.body.Tipo;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoCuadrillas.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoCuadrillas.update({ 'Tipo': Tipo }, 'Id_cuadrillas=?', [Id_cuadrillas], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -52,11 +50,11 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+router.delete('/delete', function (req, res) {
+    var Id_cuadrillas = req.body.Id_cuadrillas;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoCuadrillas.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoCuadrillas.delete('Id_cuadrillas=?', [Id_cuadrillas], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
