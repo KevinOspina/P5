@@ -27,9 +27,10 @@ router.post('/get', function (req, res) {
 
 router.post('/insert', function (req, res) {
     var Nombre = req.body.Nombre;
+    var Id_cuadrillas = req.body.Id_cuadrillas;
     var Doc_identidad = req.body.Doc_identidad;
 
-    daoEmpleados.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoEmpleados.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad, 'Id_cuadrillas':Id_cuadrillas}, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
