@@ -6,6 +6,8 @@ var daoReportes = new ReportesDAO();
 var daoActividades = new ActividadesDAO();
 
 
+
+
 router.get('/', function (req, res) {
     daoReportes.getReportes((err, row, fields) => {
         if (err) {
@@ -16,11 +18,10 @@ router.get('/', function (req, res) {
     });
 });
 
-//Consulta del DAO Lista, falta organizar el metodo.
-router.get('/get', function (req, res) {
-    var area = req.body.Id_areas;
-    var cuadrilla = req.body.Id_cuadrillas
-    daoReportes.getReportesByCuadrilla('Id_areas=?', [area], (err, row, fields) => {
+router.post('/getReportesByCuadrilla', function (req, res) {
+    var Id_areas = req.body.Id_areas;
+    var Id_cuadrillas = req.body.Id_cuadrillas
+    daoReportes.getReportesByCuadrilla(Id_areas, Id_cuadrillas, (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -56,11 +57,11 @@ router.post('/insert', function (req, res) {
 });
 
 router.put('/update', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_reportes = req.body.Id_reportes;
+    var Tipo = req.body.Tipo;
+    var Descripcion = req.body.Descripcion;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoReportes.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoReportes.update({ 'Tipo': Tipo, 'Descripcion': Descripcion }, 'Id_reportes=?', [Id_reportes], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -70,10 +71,10 @@ router.put('/update', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_reportes = req.body.Id_reportes;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoReportes.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoReportes.delete('Id_reportes=?', [Id_reportes], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
