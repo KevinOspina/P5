@@ -13,10 +13,10 @@ router.get('/', function (req, res) {
     });
 });
 
-
-router.post('/get', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoSolicitudes.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+//Se le pasa como parametro el nombre del area por el cual se quiere buscar
+router.post('/getSolicitudesByArea', function (req, res) {
+    var areas = req.body.Area;
+    daoSolicitudes.getSolicitudesByArea(areas, (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +26,10 @@ router.post('/get', function (req, res) {
 });
 
 router.post('/insert', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Descripcion = req.body.Descripcion;
+    var Estado = req.body.Estado;
 
-    daoSolicitudes.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoSolicitudes.insert({ 'Descripcion': Descripcion, 'Estado': Estado }, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -39,11 +39,11 @@ router.post('/insert', function (req, res) {
 });
 
 router.post('/update', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_solicitudes = req.body.Id_solicitudes;
+    var Descripcion = req.body.Descripcion;
+    var Estado = req.body.Estado;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoSolicitudes.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoSolicitudes.update({ 'Descripcion': Descripcion, 'Estado': Estado }, 'Id_solicitudes=?', [Id_solicitudes], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -53,10 +53,10 @@ router.post('/update', function (req, res) {
 });
 
 router.post('/delete', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_solicitudes = req.body.Id_solicitudes;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoSolicitudes.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoSolicitudes.delete('Id_solicitudes=?', [Id_solicitudes], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {

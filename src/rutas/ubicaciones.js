@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const UbicacionesDAO = require('../modulos/daos/UbicacionesDAO');
 var daoUbicaciones = new UbicacionesDAO();
+const EventosDAO = require('../modulos/daos/EventosDAO');
+var daoEventos = new EventosDAO();
 
 router.get('/', function (req, res) {
     daoUbicaciones.getUbicaciones((err, row, fields) => {
@@ -14,9 +16,9 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/get', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoUbicaciones.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+router.post('/getUbicacionByEvento', function (req, res) {
+    var Id_eventos = req.body.Id_eventos;
+    daoUbicaciones.getUbicacionesByEvento(Id_eventos, (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +28,11 @@ router.post('/get', function (req, res) {
 });
 
 router.post('/insert', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Referencia = req.body.Referencia;
+    var Latitud = req.body.Latitud;
+    var Longitud = req.body.Longitud;
 
-    daoUbicaciones.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoUbicaciones.insert({'Referencia': Referencia, 'Latitud': Latitud , 'Longitud': Longitud}, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -38,12 +41,13 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+router.put('/update', function (req, res) {
+    var Id_ubicaciones = req.body.Id_ubicaciones;
+    var Referencia = req.body.Referencia;
+    var Latitud = req.body.Latitud;
+    var Longitud = req.body.Longitud;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoUbicaciones.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoUbicaciones.update({ 'Referencia': Referencia, 'Latitud': Latitud, 'Longitud': Longitud }, 'Id_ubicaciones=?', [Id_ubicaciones], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -52,11 +56,25 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+router.put('/updateByEvento', function (req, res) {
+    var Id_eventos = req.body.Id_eventos;
+    var Id_ubicaciones = req.body.Id_ubicaciones;
+    console.log(Id_eventos, Id_ubicaciones);
+    //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
+    daoEventos.update({ 'Id_ubicaciones': Id_ubicaciones}, 'Id_eventos=?', [Id_eventos], (err, result, fields) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+router.delete('/delete', function (req, res) {
+    var Id_ubicaciones = req.body.Id_ubicaciones;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoUbicaciones.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoUbicaciones.delete('Id_ubicaciones=?', [Id_ubicaciones], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -64,6 +82,5 @@ router.post('/delete', function (req, res) {
         }
     })
 });
-
 
 module.exports = router;

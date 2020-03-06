@@ -30,7 +30,8 @@ router.post('/insert', function (req, res) {
     var Estado = req.body.Estado;
     var Descripcion = req.body.Descripcion;
     var Id_ubicaciones = req.body.Id_ubicaciones;
-    daoEventos.insert({'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion ,  'Id_ubicaciones': Id_ubicaciones  }, (err, result, fields) => {
+    var Id_solicitudes = req.body.Id_solicitudes;
+    daoEventos.insert({'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion ,  'Id_ubicaciones': Id_ubicaciones, 'Id_solicitudes': Id_solicitudes }, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -45,8 +46,9 @@ router.put('/update', function (req, res) {
     var Estado = req.body.Estado;
     var Descripcion = req.body.Descripcion;
     var Id_ubicaciones = req.body.Id_ubicaciones;
+    var Id_solicitudes = req.body.Id_solicitudes;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoEventos.update({ 'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion , 'Id_ubicaciones': Id_ubicaciones  }, 'Id_eventos=?', [Id_eventos], (err, result, fields) => {
+    daoEventos.update({ 'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion , 'Id_ubicaciones': Id_ubicaciones,'Id_solicitudes': Id_solicitudes }, 'Id_eventos=?', [Id_eventos], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {

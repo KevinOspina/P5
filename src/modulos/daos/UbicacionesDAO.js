@@ -11,6 +11,12 @@ class UbicacionesDAO extends DaoHandlerJS {
         });
     }
 
+    getUbicacionesByEvento(Id_eventos, callback){
+        this.exec_query('select e.Tipo, e.Estado, e.Descripcion, u.Referencia from eventos e, ubicaciones u where e.Id_ubicaciones = u.Id_ubicaciones and u.Id_ubicaciones =?', [Id_eventos], (err, row, fields) => {
+            callback(err, row, fields);
+        });
+    }
+
 }
 
 module.exports = UbicacionesDAO;

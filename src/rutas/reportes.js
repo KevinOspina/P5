@@ -39,7 +39,7 @@ router.post('/insert', function (req, res) {
 
 
 
-    daoReportes.insert({'Tipo': tipo, 'Descripcion': descripcion, 'Id_eventos': evento, 'Id_solicitudes':solicitud, 'Id_areas':area}, (err, result, fields) => {
+    daoReportes.insert({'Tipo': tipo, 'Descripcion': descripcion, 'Id_eventos': evento, 'Id_areas':area}, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -70,7 +70,7 @@ router.put('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
+router.delete('/delete', function (req, res) {
     var Id_reportes = req.body.Id_reportes;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
