@@ -50,6 +50,18 @@ router.put('/update', function (req, res) {
     })
 });
 
+router.post('/evento', function (req, res) {
+    var Id_eventos = req.body.Id_eventos;
+    //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
+    daoCuadrillas.getCuadrillasByEventos(Id_eventos, (err, result, fields) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
+});
+
 router.delete('/delete', function (req, res) {
     var Id_cuadrillas = req.body.Id_cuadrillas;
 
