@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 //Se le pasa como parametro el nombre del area por el cual se quiere buscar
-router.post('/getSolicitudesByArea', function (req, res) {
+router.post('/solicitudes/area', function (req, res) {
     var areas = req.body.Area;
     daoSolicitudes.getSolicitudesByArea(areas, (err, row, fields) => {
         if (err) {
@@ -25,7 +25,7 @@ router.post('/getSolicitudesByArea', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Descripcion = req.body.Descripcion;
     var Estado = req.body.Estado;
 
@@ -38,7 +38,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_solicitudes = req.body.Id_solicitudes;
     var Descripcion = req.body.Descripcion;
     var Estado = req.body.Estado;
@@ -52,7 +52,7 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_solicitudes = req.body.Id_solicitudes;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

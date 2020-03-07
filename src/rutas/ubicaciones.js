@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/getUbicacionByEvento', function (req, res) {
+router.post('/ubicaciones/eventos', function (req, res) {
     var Id_eventos = req.body.Id_eventos;
     daoUbicaciones.getUbicacionesByEvento(Id_eventos, (err, row, fields) => {
         if (err) {
@@ -27,7 +27,7 @@ router.post('/getUbicacionByEvento', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Referencia = req.body.Referencia;
     var Latitud = req.body.Latitud;
     var Longitud = req.body.Longitud;
@@ -41,7 +41,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.put('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_ubicaciones = req.body.Id_ubicaciones;
     var Referencia = req.body.Referencia;
     var Latitud = req.body.Latitud;
@@ -56,7 +56,7 @@ router.put('/update', function (req, res) {
     })
 });
 
-router.put('/updateByEvento', function (req, res) {
+router.put('/ubicaciones/eventos', function (req, res) {
     var Id_eventos = req.body.Id_eventos;
     var Id_ubicaciones = req.body.Id_ubicaciones;
     console.log(Id_eventos, Id_ubicaciones);
@@ -70,7 +70,7 @@ router.put('/updateByEvento', function (req, res) {
     });
 });
 
-router.delete('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_ubicaciones = req.body.Id_ubicaciones;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

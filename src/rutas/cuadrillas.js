@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/get', function (req, res) {
+router.post('/id', function (req, res) {
     var Id_cuadrillas = req.body.Id_cuadrillas;
     daoCuadrillas.get('Id_cuadrillas=?', [Id_cuadrillas], (err, row, fields) => {
         if (err) {
@@ -25,7 +25,7 @@ router.post('/get', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Tipo = req.body.Tipo;
 
     daoCuadrillas.insert({'Tipo': Tipo}, (err, result, fields) => {
@@ -37,7 +37,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.put('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_cuadrillas = req.body.Id_cuadrillas;
     var Tipo = req.body.Tipo;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
@@ -62,7 +62,7 @@ router.post('/evento', function (req, res) {
     })
 });
 
-router.delete('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_cuadrillas = req.body.Id_cuadrillas;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

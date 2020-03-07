@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/get', function (req, res) {
+router.post('/id', function (req, res) {
     var Doc_identidad = req.body.Doc_identidad;
     daoHistoriales.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
         if (err) {
@@ -25,7 +25,7 @@ router.post('/get', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Nombre = req.body.Nombre;
     var Doc_identidad = req.body.Doc_identidad;
 
@@ -38,7 +38,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_empleado = req.body.Id_empleado;
     var Nombre = req.body.Nombre;
     var Doc_identidad = req.body.Doc_identidad;
@@ -52,7 +52,7 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Doc_identidad = req.body.Doc_identidad;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

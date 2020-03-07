@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/get', function (req, res) {
+router.post('/id', function (req, res) {
     var Id_estandares = req.body.Id_estandares;
     daoEstandares.get('Id_estandares=?', [Id_estandares], (err, row, fields) => {
         if (err) {
@@ -25,7 +25,7 @@ router.post('/get', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Descripcion = req.body.Descripcion;
     daoEstandares.insert({'Descripcion': Descripcion }, (err, result, fields) => {
         if (err) {
@@ -36,7 +36,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.post('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_estandares = req.body.Id_estandares;
     var Descripcion = req.body.Descripcion;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
@@ -49,7 +49,7 @@ router.post('/update', function (req, res) {
     })
 });
 
-router.post('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_estandares = req.body.Id_estandares;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

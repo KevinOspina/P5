@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/getReportesByCuadrilla', function (req, res) {
+router.post('/reportes/cuadrilla', function (req, res) {
     var Id_areas = req.body.Id_areas;
     var Id_cuadrillas = req.body.Id_cuadrillas
     daoReportes.getReportesByCuadrilla(Id_areas, Id_cuadrillas, (err, row, fields) => {
@@ -30,11 +30,10 @@ router.post('/getReportesByCuadrilla', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var tipo = req.body.Tipo;
     var descripcion = req.body.Descripcion;
     var evento = req.body.Id_eventos;
-    var solicitud = req.body.Id_solicitudes;
     var area = req.body.Id_areas;
 
 
@@ -56,7 +55,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.put('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Id_reportes = req.body.Id_reportes;
     var Tipo = req.body.Tipo;
     var Descripcion = req.body.Descripcion;
@@ -70,7 +69,7 @@ router.put('/update', function (req, res) {
     })
 });
 
-router.delete('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_reportes = req.body.Id_reportes;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.

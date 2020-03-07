@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/get', function (req, res) {
+router.post('/id', function (req, res) {
     var Id_actividades = req.body.Id_actividades;
     daoActividades.get('Id_actividades=?', [Id_actividades], (err, row, fields) => {
         if (err) {
@@ -25,7 +25,7 @@ router.post('/get', function (req, res) {
     });
 });
 
-router.post('/insert', function (req, res) {
+router.post('/', function (req, res) {
     var Descripcion = req.body.Descripcion;
     var Id_cuadrillas = req.body.Id_cuadrillas;
     var Id_eventos = req.body.Id_eventos;
@@ -39,7 +39,7 @@ router.post('/insert', function (req, res) {
     })
 });
 
-router.put('/update', function (req, res) {
+router.put('/', function (req, res) {
     var Descripcion = req.body.Descripcion;
     var Id_cuadrillas = req.body.Id_cuadrillas;
     var Id_eventos = req.body.Id_eventos;
@@ -78,7 +78,7 @@ router.post('/cuadrillasID', function (req, res) {
     })
 });
 
-router.delete('/delete', function (req, res) {
+router.delete('/', function (req, res) {
     var Id_actividades = req.body.Id_actividades;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
