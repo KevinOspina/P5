@@ -1,20 +1,16 @@
-const DaoHandlerJS = require('../bd/daohandlerjs');
+const data = require('../BurnedData/CuadrillasData.json');
 
-class CuadrillasDAO extends DaoHandlerJS {
+class CuadrillasDAO{
     constructor() {
-        super("cuadrillas");
+        console.log("Service Cuadrillas DAO Running");
     }
 
-    getCuadrillas(callback) {
-        this.exec_query('select * from cuadrillas', null, (err, row, fields) => {
-            callback(err, row, fields);
-        });
+    getCuadrillasJSON() {
+        return data;
     }
 
-    getCuadrillasByEventos(Id_eventos,callback) {
-        this.exec_query('SELECT cuadrillas.Tipo,actividades.Id_cuadrillas, eventos.Descripcion, eventos.Id_eventos FROM actividades inner join cuadrillas on actividades.Id_cuadrillas = cuadrillas.Id_cuadrillas inner join eventos on eventos.Id_eventos = actividades.Id_eventos and eventos.Id_eventos = ?', [Id_eventos], (err, row, fields) => {
-            callback(err, row, fields);
-        });
+    postCuadrillas(cuadrilla){
+        data.push(cuadrilla)
     }
 }
 

@@ -4,25 +4,34 @@ const CuadrillasDAO = require('../modulos/daos/CuadrillasDAO');
 var daoCuadrillas = new CuadrillasDAO();
 
 router.get('/', function (req, res) {
-    daoCuadrillas.getCuadrillas((err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+    var data  = daoCuadrillas.getCuadrillasJSON();
+    res.json(data);
 });
 
 
-router.post('/id', function (req, res) {
-    var Id_cuadrillas = req.body.Id_cuadrillas;
-    daoCuadrillas.get('Id_cuadrillas=?', [Id_cuadrillas], (err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+router.post('/', function (req, res) {
+    var empleados = [];
+    var cuadrillaJSON = {"cuadrillaID":"","empleados":""};
+    var empleadosJSON = {"empleadoID":"","nombre":""};
+
+    var cuadrillaID = req.body.Id_cuadrillas;
+    var empleadoIDAux = req.body.empleadoID.split(',');
+    var nombreAux = req.body.nombre.split(',');
+    console.log(empleadoIDAux,nombreAux);
+
+    for(var i = 0 ;i<empleadoIDAux.length;i++){
+        console.log(empleadoIDAux[i],nombreAux[i]);
+        empleadosJSON['empleadoID'] = empleadoIDAux[i];
+        empleadosJSON['nombre'] = nombreAux[i];
+        console.log(empleadosJSON);
+        empleados.push(empleadosJSON);
+    }
+
+    cuadrillaJSON['cuadrillaID'] = cuadrillaID;
+    cuadrillaJSON['empleados'] = empleados;
+
+    daoCuadrillas.postCuadrillas(cuadrillaJSON);
+    res.json(daoCuadrillas.getCuadrillasJSON());
 });
 
 router.post('/', function (req, res) {

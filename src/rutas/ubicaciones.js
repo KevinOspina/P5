@@ -5,26 +5,18 @@ var daoUbicaciones = new UbicacionesDAO();
 const EventosDAO = require('../modulos/daos/EventosDAO');
 var daoEventos = new EventosDAO();
 
-router.get('/', function (req, res) {
-    daoUbicaciones.getUbicaciones((err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+router.get('/',function(req,res){
+    var data = daoUbicaciones.getUbicacionesJSON();
+    res.json(data);
 });
 
 
-router.post('/ubicaciones/eventos/id', function (req, res) {
-    var Id_eventos = req.body.Id_eventos;
-    daoUbicaciones.getUbicacionesByEvento(Id_eventos, (err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+router.post('/', function (req, res) {
+    var ubicacionID = req.body.Referencia;
+    var latitud = req.body.Latitud;
+    var longitud = req.body.Longitud;
+    daoUbicaciones.postUbicacion(ubicacionID,latitud,longitud);
+    res.json(daoUbicaciones.getUbicacionesJSON());
 });
 
 router.post('/', function (req, res) {

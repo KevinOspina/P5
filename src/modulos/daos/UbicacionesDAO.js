@@ -1,22 +1,26 @@
-const DaoHandlerJS = require('../bd/daohandlerjs');
+const DaoHandlerJS = require("../BurnedData/ubicacionesData.json");
 
-class UbicacionesDAO extends DaoHandlerJS {
+class UbicacionesDAO {
+
     constructor() {
-        super("ubicaciones");
+        console.log("Service UbicacionesDAO Running");
     }
 
-    getUbicaciones(callback) {
-        this.exec_query('select * from ubicaciones', null, (err, row, fields) => {
-            callback(err, row, fields);
-        });
+    postUbicacion(ubicacionID,latitud,longitud){
+        console.log(ubicacionID,latitud,longitud);
+        var NewUbication = '{"ubicacionID":'+'"'+ubicacionID+'",'+'"coordenadas":{'+'"latitud":'+'"'+latitud+'",'+'"longitud":'+'"'+longitud+'"'+'}'+'}';
+        console.log(NewUbication);
+        var obj = JSON.parse(NewUbication);
+        DaoHandlerJS.push(obj);
+        console.log(DaoHandlerJS);
     }
 
-    getUbicacionesByEvento(Id_eventos, callback){
-        this.exec_query('select e.Tipo, e.Estado, e.Descripcion, u.Referencia from eventos e, ubicaciones u where e.Id_ubicaciones = u.Id_ubicaciones and u.Id_ubicaciones =?', [Id_eventos], (err, row, fields) => {
-            callback(err, row, fields);
-        });
+    getUbicacionesJSON(){
+        var ubicationJson = DaoHandlerJS;
+        console.log(ubicationJson);
+        return ubicationJson;
     }
-
+    
 }
 
 module.exports = UbicacionesDAO;
