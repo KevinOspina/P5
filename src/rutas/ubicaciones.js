@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
 });
 
 
-router.post('/ubicaciones/eventos', function (req, res) {
+router.post('/ubicaciones/eventos/id', function (req, res) {
     var Id_eventos = req.body.Id_eventos;
     daoUbicaciones.getUbicacionesByEvento(Id_eventos, (err, row, fields) => {
         if (err) {

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const SolicitudesDAO = require('../modulos/daos/SolicitudesDAO');
 var daoSolicitudes = new SolicitudesDAO();
+const NotificacionesDAO = require('../modulos/daos/NotificacionesDAO');
+var daoNotificaciones = new NotificacionesDAO();
 
 router.get('/', function (req, res) {
     daoSolicitudes.getSolicitudes((err, row, fields) => {
@@ -36,6 +38,16 @@ router.post('/', function (req, res) {
             res.json(result);
         }
     })
+
+    daoNotificaciones.insert({ 'Tipo': Descripcion }, (err, result, fields) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
+
+
 });
 
 router.put('/', function (req, res) {

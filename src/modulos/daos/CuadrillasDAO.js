@@ -16,7 +16,6 @@ class CuadrillasDAO extends DaoHandlerJS {
             callback(err, row, fields);
         });
     }
-
 }
 
 module.exports = CuadrillasDAO;

@@ -1,0 +1,21 @@
+[
+    {
+        "actividadID":"A001",
+        "tipo":"Mantenimiento",
+        "descripcion":"Se debe realizar limpieza de todas las señales de transito indicadas en la via desde el punto de control 1 al 3",
+        "estado":"En proceso",
+        "responsables":[
+            {
+                "cuadrillaID":"C002"
+            }
+        ],
+        "ubicaciones":[
+            {
+                "ubicacionID":"PC001"
+            },
+            {
+                "ubicacionID":"PC003s"
+            }
+        ] 
+    }
+]

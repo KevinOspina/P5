@@ -1,0 +1,41 @@
+[
+    {
+        "cuadrillaID":"C001",
+        "empleados":[
+            {
+                "empleadoID":"43043879",
+                "nombre":"Roberto Carlos Montes"
+            },
+            {
+                "empleadoID":"0967555543",
+                "nombre":"Maria dela Rosa Martinez"
+            }
+        ]
+    },
+    {
+        "cuadrillaID":"C002",
+        "empleados":[
+            {
+                "empleadoID":"1114552487",
+                "nombre":"Mario Alberto Rodriguez"
+            },
+            {
+                "empleadoID":"00011144477",
+                "nombre":"Pedro Salinas"
+            }
+        ]
+    },
+    {
+        "cuadrillaID":"C008",
+        "empleados":[
+            {
+                "empleadoID":"005487965",
+                "nombre":"Carmen Casas"
+            },
+            {
+                "empleadoID":"2265478525",
+                "nombre":"Mario Puerta"
+            }
+        ]
+    }
+]

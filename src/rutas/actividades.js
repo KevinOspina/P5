@@ -65,7 +65,7 @@ router.post('/cuadrillas', function (req, res) {
     })
 });
 
-router.post('/cuadrillasID', function (req, res) {
+router.post('/cuadrillas/id', function (req, res) {
     var Id_cuadrillas = req.body.Id_cuadrillas;
     var Id_actividades = req.body.Id_actividades;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.

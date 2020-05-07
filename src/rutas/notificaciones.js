@@ -3,6 +3,7 @@ const router = express.Router();
 const NotificacionesDAO = require('../modulos/daos/NotificacionesDAO');
 var daoNotificaciones = new NotificacionesDAO();
 
+
 router.get('/', function (req, res) {
     daoNotificaciones.getNotificaciones((err, row, fields) => {
         if (err) {
@@ -15,8 +16,8 @@ router.get('/', function (req, res) {
 
 
 router.post('/id', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
-    daoNotificaciones.get('Doc_identidad=?', [Doc_identidad], (err, row, fields) => {
+    var Id_notificaciones = req.body.Id_notificaciones;
+    daoNotificaciones.get('Id_notificaciones=?', [Id_notificaciones], (err, row, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -26,10 +27,9 @@ router.post('/id', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Tipo = req.body.Tipo;
 
-    daoNotificaciones.insert({'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, (err, result, fields) => {
+    daoNotificaciones.insert({'Tipo': Tipo}, (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -39,11 +39,10 @@ router.post('/', function (req, res) {
 });
 
 router.put('/', function (req, res) {
-    var Id_empleado = req.body.Id_empleado;
-    var Nombre = req.body.Nombre;
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_notificaciones = req.body.Id_notificaciones;
+    var Tipo = req.body.Tipo;
     //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoNotificaciones.update({ 'Nombre': Nombre, 'Doc_identidad': Doc_identidad }, 'Id_empleado=?', [Id_empleado], (err, result, fields) => {
+    daoNotificaciones.update({ 'Tipo': Tipo,}, 'Id_notificaciones=?', [Id_notificaciones], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {
@@ -53,10 +52,10 @@ router.put('/', function (req, res) {
 });
 
 router.delete('/', function (req, res) {
-    var Doc_identidad = req.body.Doc_identidad;
+    var Id_notificaciones = req.body.Id_notificaciones;
 
     //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoNotificaciones.delete('Doc_identidad=?', [Doc_identidad], (err, result, fields) => {
+    daoNotificaciones.delete('Id_notificaciones=?', [Id_notificaciones], (err, result, fields) => {
         if (err) {
             res.json(err);
         } else {

@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
     });
 });
 
-router.post('/reportes/cuadrilla', function (req, res) {
+router.post('/areas/cuadrilla', function (req, res) {
     var Id_areas = req.body.Id_areas;
     var Id_cuadrillas = req.body.Id_cuadrillas
     daoReportes.getReportesByCuadrilla(Id_areas, Id_cuadrillas, (err, row, fields) => {

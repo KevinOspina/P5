@@ -1,0 +1,16 @@
+[
+    {
+        "eventoID":"Mantenimiento",
+        "cuadrillas":[
+            {
+                "cuadrillaID":"C001"
+            },
+            {
+                "cuadrillaID":"C002"
+            },
+            {
+                "cuadrillaID":"C008"
+            }
+        ]
+    }
+]
