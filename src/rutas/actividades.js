@@ -1,94 +1,59 @@
 const express = require('express');
 const router = express.Router();
-const ActividadesDAO = require('../modulos/daos/ActividadesDAO');
+const ActividadesDAO = require('../modulos/BurnedData/ActividadesBurnedDAO');
 var daoActividades = new ActividadesDAO();
 
 router.get('/', function (req, res) {
-    daoActividades.getActividades((err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+    var data = daoActividades.getActividades();
+    res.json(data);
 });
 
-
-router.post('/id', function (req, res) {
-    var Id_actividades = req.body.Id_actividades;
-    daoActividades.get('Id_actividades=?', [Id_actividades], (err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
-});
 
 router.post('/', function (req, res) {
-    var Descripcion = req.body.Descripcion;
-    var Id_cuadrillas = req.body.Id_cuadrillas;
-    var Id_eventos = req.body.Id_eventos;
+    var responsables = [];
+    var ubicaciones = [];
+    var actividadJSON = {
+        "actividadID":"",
+        "tipo":"",
+        "descripcion":"",
+        "estado":"",
+        "responsables":"",
+        "ubicaciones":"" 
+    }
+    
+    var actividadID = req.body.actividadID;
+    var tipo = req.body.tipo;
+    var descripcion = req.body.descripcion;
+    var estado = req.body.estado;
 
-    daoActividades.insert({'Descripcion': Descripcion, 'Id_cuadrillas': Id_cuadrillas, 'Id_eventos': Id_eventos }, (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
+    var responsablesAux = req.body.responsables.split(',');
+    var ubicacionesAux = req.body.ubicaciones.split(',');
+
+    for(var i = 0 ; i < responsablesAux.length; i++){
+        var responsableJSON = {
+            "cuadrillaID":""
         }
-    })
-});
+        responsableJSON['cuadrillaID'] = responsablesAux[i];
+        responsables.push(responsableJSON);
+    }
 
-router.put('/', function (req, res) {
-    var Descripcion = req.body.Descripcion;
-    var Id_cuadrillas = req.body.Id_cuadrillas;
-    var Id_eventos = req.body.Id_eventos;
-    //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoActividades.update({ 'Descripcion': Descripcion, 'Id_cuadrillas': Id_cuadrillas, 'Id_eventos': Id_eventos }, 'Id_actividades=?', [Id_actividades], (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
+    for(var i = 0 ; i < ubicacionesAux.length; i++){
+        var ubicacionJSON = {
+            "ubicacionID":""
         }
-    })
-});
+    
+        ubicacionJSON['ubicacionID'] = ubicacionesAux[i];
+        ubicaciones.push(ubicacionJSON);
+    }
 
-router.post('/cuadrillas', function (req, res) {
-    var Id_cuadrillas = req.body.Id_cuadrillas;
-    //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoActividades.getActividadesByCuadrilla(Id_cuadrillas, (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
-        }
-    })
-});
+    actividadJSON['actividadID'] = actividadID;
+    actividadJSON['tipo'] = tipo;
+    actividadJSON['descripcion'] = descripcion;
+    actividadJSON['estado'] = estado;
+    actividadJSON['responsables'] = responsables;
+    actividadJSON['ubicaciones'] = ubicaciones;
 
-router.post('/cuadrillas/id', function (req, res) {
-    var Id_cuadrillas = req.body.Id_cuadrillas;
-    var Id_actividades = req.body.Id_actividades;
-    //Se agrega los campos a actualizar, la condicion sql de actualizacion y los valores para la condicion.
-    daoActividades.getActividadByCuadrilla(Id_cuadrillas, Id_actividades, (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
-        }
-    })
-});
-
-router.delete('/', function (req, res) {
-    var Id_actividades = req.body.Id_actividades;
-
-    //Se agrega la condicion sql de borrado y los valores para la condicion.
-    daoActividades.delete('Id_actividades=?', [Id_actividades], (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
-        }
-    })
+    res.json(daoActividades.postActividades(actividadJSON));
 });
 
 

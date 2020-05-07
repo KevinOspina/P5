@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CuadrillasDAO = require('../modulos/daos/CuadrillasDAO');
+const CuadrillasDAO = require('../modulos/BurnedData/CuadrillasDAO');
 var daoCuadrillas = new CuadrillasDAO();
 
 router.get('/', function (req, res) {

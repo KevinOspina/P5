@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UbicacionesDAO = require('../modulos/daos/UbicacionesDAO');
+const UbicacionesDAO = require('../modulos/BurnedData/UbicacionesDAO');
 var daoUbicaciones = new UbicacionesDAO();
 const EventosDAO = require('../modulos/daos/EventosDAO');
 var daoEventos = new EventosDAO();

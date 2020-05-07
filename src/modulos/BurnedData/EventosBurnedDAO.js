@@ -9,7 +9,7 @@ class EventosBurnedDAO {
         return data;
     }
 
-    insertEvento(evento){
+    postEventos(evento){
         data.push(evento);
     }
 }

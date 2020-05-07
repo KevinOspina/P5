@@ -3,7 +3,7 @@ const DaoHandlerJS = require("./ubicacionesData.json");
 class UbicacionesDAO {
 
     constructor() {
-        console.log("Service UbicacionesDAO Running");
+        console.log("Service Ubicaciones Running");
     }
 
     postUbicacion(ubicacionID,latitud,longitud){

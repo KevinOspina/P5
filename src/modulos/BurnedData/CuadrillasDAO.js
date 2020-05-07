@@ -2,7 +2,7 @@ const data = require('./CuadrillasData.json');
 
 class CuadrillasDAO{
     constructor() {
-        console.log("Service Cuadrillas DAO Running");
+        console.log("Service Cuadrillas Running");
     }
 
     getCuadrillasJSON() {
