@@ -1,4 +1,4 @@
-const data = require('../BurnedData/CuadrillasData.json');
+const data = require('./CuadrillasData.json');
 
 class CuadrillasDAO{
     constructor() {

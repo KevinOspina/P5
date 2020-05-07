@@ -1,4 +1,4 @@
-const DaoHandlerJS = require("../BurnedData/ubicacionesData.json");
+const DaoHandlerJS = require("./ubicacionesData.json");
 
 class UbicacionesDAO {
 
