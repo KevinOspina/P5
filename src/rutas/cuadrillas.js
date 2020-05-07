@@ -12,21 +12,17 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     var empleados = [];
     var cuadrillaJSON = {"cuadrillaID":"","empleados":""};
-    var empleadosJSON = {"empleadoID":"","nombre":""};
 
     var cuadrillaID = req.body.Id_cuadrillas;
     var empleadoIDAux = req.body.empleadoID.split(',');
     var nombreAux = req.body.nombre.split(',');
-    console.log(empleadoIDAux,nombreAux);
 
-    for(var i = 0 ;i<empleadoIDAux.length;i++){
-        console.log(empleadoIDAux[i],nombreAux[i]);
+    for(var i = 0 ; i < empleadoIDAux.length; i++){
+        var empleadosJSON = {"empleadoID":"","nombre":""};
         empleadosJSON['empleadoID'] = empleadoIDAux[i];
         empleadosJSON['nombre'] = nombreAux[i];
-        console.log(empleadosJSON);
         empleados.push(empleadosJSON);
     }
-
     cuadrillaJSON['cuadrillaID'] = cuadrillaID;
     cuadrillaJSON['empleados'] = empleados;
 

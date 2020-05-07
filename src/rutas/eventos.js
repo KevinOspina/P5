@@ -1,45 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const EventosDAO = require('../modulos/daos/EventosDAO');
+const EventosDAO = require('../modulos/BurnedData/EventosBurnedDAO');
 var daoEventos = new EventosDAO();
 
+
 router.get('/', function (req, res) {
-    daoEventos.getEventos((err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
+    var data = daoEventos.getEventos();
+    res.json(data);
 });
+    
+router.post('/', function (req, res) {
+    var cuadrillas = []
+    var eventoJSON = {"eventoID":"", "cuadrillas":""}
 
+    var eventoID = req.body.eventoID;    
+    var cuadrillasAux = req.body.cuadrillas.split(",");
 
-router.post('/get', function (req, res) {
-    var Id_eventos = req.body.Id_eventos;
-    daoEventos.get('Id_eventos=?', [Id_eventos], (err, row, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(row);
-        }
-    });
-});
+    for (var i = 0; i < cuadrillasAux.length; i++) {
+        var cuadrillaJSON = {"cuadrillaID":""}
 
-router.post('/insert', function (req, res) {
-    var Tipo = req.body.Tipo;
-    var Estado = req.body.Estado;
-    var Descripcion = req.body.Descripcion;
-    var Id_ubicaciones = req.body.Id_ubicaciones;
-    var Id_solicitudes = req.body.Id_solicitudes;
-    var Id_estandares = req.body.Id_estandares;
+        cuadrillaJSON['cuadrillaID'] = cuadrillasAux[i]
+        cuadrillas.push(cuadrillaJSON);
+    }
+    eventoJSON['eventoID'] = eventoID;
+    eventoJSON['cuadrillas'] = cuadrillas;
 
-    daoEventos.insert({'Tipo': Tipo, 'Estado': Estado, 'Descripcion': Descripcion ,  'Id_ubicaciones': Id_ubicaciones ,  'Id_estandares': Id_estandares, 'Id_solicitudes': Id_solicitudes }, (err, result, fields) => {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(result);
-        }
-    })
+    daoEventos.insertEvento(eventoJSON);
+    res.json(daoEventos.getEventos());
 });
 
 router.put('/update', function (req, res) {
