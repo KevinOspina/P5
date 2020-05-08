@@ -12,7 +12,7 @@ class ActividadesBurnedDAO {
     postActividades(actividad){
         try {
             data.push(actividad);
-            return ("new activity created")
+            return this.getActividades()
         } catch (error) {
             return error
         }

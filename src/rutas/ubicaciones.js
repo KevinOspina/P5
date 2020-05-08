@@ -11,13 +11,17 @@ router.get('/',function(req,res){
 });
 
 
-router.post('/', function (req, res) {
+router.post('/aa', function (req, res) {
     var ubicacionID = req.body.Referencia;
     var latitud = req.body.Latitud;
     var longitud = req.body.Longitud;
     daoUbicaciones.postUbicacion(ubicacionID,latitud,longitud);
     res.json(daoUbicaciones.getUbicacionesJSON());
 });
+
+
+
+
 
 router.post('/', function (req, res) {
     var Referencia = req.body.Referencia;

@@ -3,13 +3,13 @@ const router = express.Router();
 const CuadrillasDAO = require('../modulos/BurnedData/CuadrillasDAO');
 var daoCuadrillas = new CuadrillasDAO();
 
-router.get('/', function (req, res) {
+router.get('/g', function (req, res) {
     var data  = daoCuadrillas.getCuadrillasJSON();
     res.json(data);
 });
 
 
-router.post('/', function (req, res) {
+router.post('/aa', function (req, res) {
     var empleados = [];
     var cuadrillaJSON = {"cuadrillaID":"","empleados":""};
 

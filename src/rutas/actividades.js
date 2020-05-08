@@ -3,13 +3,13 @@ const router = express.Router();
 const ActividadesDAO = require('../modulos/BurnedData/ActividadesBurnedDAO');
 var daoActividades = new ActividadesDAO();
 
-router.get('/', function (req, res) {
+router.get('/g', function (req, res) {
     var data = daoActividades.getActividades();
     res.json(data);
 });
 
 
-router.post('/', function (req, res) {
+router.post('/aa', function (req, res) {
     var responsables = [];
     var ubicaciones = [];
     var actividadJSON = {

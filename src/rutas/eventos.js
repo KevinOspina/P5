@@ -9,7 +9,7 @@ router.get('/', function (req, res) {
     res.json(data);
 });
     
-router.post('/', function (req, res) {
+router.post('/aa', function (req, res) {
     var cuadrillas = []
     var eventoJSON = {"eventoID":"", "cuadrillas":""}
 
@@ -25,7 +25,7 @@ router.post('/', function (req, res) {
     eventoJSON['eventoID'] = eventoID;
     eventoJSON['cuadrillas'] = cuadrillas;
 
-    daoEventos.insertEvento(eventoJSON);
+    daoEventos.postEventos(eventoJSON);
     res.json(daoEventos.getEventos());
 });
 

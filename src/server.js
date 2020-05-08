@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.urlencoded({ extended: false }));
 //Configuracion
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3002);
 //Middlewares
 app.use(express.json());
 //Publica la carpeta de imagenes para poder consultarla desde el navegador
